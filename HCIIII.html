@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Online Member User ID Registration</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif, Helvetica, sans-serif;
+            background-color: #eef2f7;
+            color: #333;
+            padding: 30px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            margin: auto;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.10);
+        }
+
+
+        .header {
+            background: linear-gradient(
+                135deg,
+                #0066cc,
+                #004b91
+            );
+
+            color: white;
+            padding: 30px;
+        }
+
+        .header h1 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 14px;
+        }
+
+
+        form {
+            padding: 30px;
+        }
+
+        .required {
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .required span,
+        label span {
+            color: red;
+            font-weight: bold;
+        }
+
+        section {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        section h2 {
+            color: #005bab;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #c8d0d9;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus {
+            border-color: #0066cc;
+
+            box-shadow:
+                0 0 0 3px rgba(0, 102, 204, 0.12);
+        }
+
+
+        .info {
+            background-color: #eef7ff;
+
+            border-left: 4px solid #0066cc;
+
+            padding: 12px;
+
+            margin-bottom: 20px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+
+        small {
+            display: block;
+
+            color: #d93025;
+
+            font-size: 12px;
+
+            margin-top: 5px;
+        }
+
+
+
+        .error-input {
+            border-color: #d93025 !important;
+
+            background-color: #fff5f5;
+        }
+
+
+
+        .checkbox {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-right: 20px;
+
+            font-weight: normal;
+
+            cursor: pointer;
+        }
+
+        .checkbox input {
+            width: 16px;
+            height: 16px;
+        }
+
+
+
+        .buttons {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 12px 25px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .clear {
+            background-color: #e2e6ea;
+
+            color: #333;
+        }
+
+        .clear:hover {
+            background-color: #d0d5da;
+        }
+
+
+        .submit {
+            background-color: #0066cc;
+
+            color: white;
+        }
+
+        .submit:hover {
+            background-color: #004b91;
+        }
+
+
+        .success {
+            display: none;
+
+            background-color: #e8f7ed;
+
+            color: #207a3b;
+
+            border: 1px solid #b8dfc2;
+
+            border-radius: 6px;
+
+            padding: 12px;
+
+            margin-top: 20px;
+        }
+
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 21px;
+            }
+
+            form {
+                padding: 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .checkbox {
+                display: flex;
+                margin-bottom: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+    <div class="container">
+      
+
+        <div class="header">
+
+            <h1>
+                Online Member User ID Registration
+            </h1>
+
+            <p>
+                Please supply the following information.
+            </p>
+
+        </div>
+
+
+        <form id="registrationForm">
+
+
+            <p class="required">
+                <span>*</span> Required Field
+            </p>
+
+
+            <section>
+
+                <h2>
+                    Personal Information
+                </h2>
+
+
+                <div class="form-group">
+
+                    <label for="ssn">
+                        CRN / SS Number
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="ssn"
+                        placeholder="Enter CRN / SS Number"
+                        required
+                    >
+
+                    <small id="ssnError"></small>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter email address"
+                        required
+                    >
+
+                    <small id="emailError"></small>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="confirmEmail">
+                        Confirm Email Address
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="confirmEmail"
+                        placeholder="Confirm email address"
+                        required
+                    >
+
+                    <small id="confirmEmailError"></small>
+
+                </div>
+
+            </section>
+
+
+            <section>
+
+                <h2>
+                    Account Information
+                </h2>
+
+
+                <div class="info">
+
+                    User ID must be 8–20 characters.
+                    The first character must be a letter.
+                    Only letters, numbers, and underscores
+                    are allowed.
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="userId">
+                        Preferred User ID
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="userId"
+                        placeholder="Create your User ID"
+                        required
+                    >
+
+                    <small id="userIdError"></small>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="confirmUserId">
+                        Confirm Preferred User ID
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="confirmUserId"
+                        placeholder="Confirm your User ID"
+                        required
+                    >
+
+                    <small id="confirmUserIdError"></small>
+
+                </div>
+
+            </section>
+
+
+            <section>
+
+                <h2>
+                    Name Information
+                </h2>
+
+
+                <div class="form-group">
+
+                    <label for="lastName">
+                        Surname / Last Name
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lastName"
+                        placeholder="Enter surname"
+                        required
+                    >
+
+                    <small id="lastNameError"></small>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="firstName">
+                        Given Name
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="firstName"
+                        placeholder="Enter given name"
+                        required
+                    >
+
+                    <small id="firstNameError"></small>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="middleName">
+                        Middle Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="middleName"
+                        placeholder="Enter middle name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="birthDate">
+                        Date of Birth
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="birthDate"
+                        required
+                    >
+
+                    <small id="birthDateError"></small>
+
+                </div>
+
+            </section>
+
+
+            <section>
+
+                <h2>
+                    Mailing Address
+                </h2>
+
+
+
+                <div class="form-group">
+
+                    <label for="room">
+                        Room / Floor / Unit No.
+                        & Building Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="room"
+                        placeholder="Room / Floor / Unit / Building"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="house">
+                        House / Lot & Block No.
+                    </label>
+
+                    <input
+                        type="text"
+                        id="house"
+                        placeholder="House / Lot / Block Number"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="street">
+                        Street
+                    </label>
+
+                    <input
+                        type="text"
+                        id="street"
+                        placeholder="Street"
+                    >
+
+                </div>
+
+
+               
+
+                <div class="form-group">
+
+                    <label for="subdivision">
+                        Subdivision
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subdivision"
+                        placeholder="Subdivision"
+                    >
+
+                </div>
+
+            </section>
+
+
+
+            <section>
+
+                <h2>
+                    Address Type
+                </h2>
+
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="metro"
+                    >
+
+                    Metro Manila
+
+                </label>
+
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="province"
+                    >
+
+                    Province
+
+                </label>
+
+            </section>
+
+
+            
+            <div class="buttons">
+
+                <button
+                    type="reset"
+                    class="clear"
+                >
+                    Clear
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="submit"
+                >
+                    Register
+                </button>
+
+            </div>
+
+
+            <div
+                id="successMessage"
+                class="success"
+            >
+                Registration completed successfully!
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+
+        const fields = [
+
+            "ssn",
+
+            "email",
+
+            "confirmEmail",
+
+            "userId",
+
+            "confirmUserId",
+
+            "lastName",
+
+            "firstName",
+
+            "middleName",
+
+            "birthDate",
+
+            "room",
+
+            "house",
+
+            "street",
+
+            "subdivision"
+
+        ];
+
+
+        fields.forEach(function(id, index) {
+
+
+            const currentField =
+                document.getElementById(id);
+
+
+            currentField.addEventListener(
+                "keydown",
+                function(event) {
+
+
+
+                    if (event.key === "Enter") {
+
+                        event.preventDefault();
+
+
+                        const nextField =
+                            fields[index + 1];
+
+
+                        if (nextField) {
+
+                            document
+                                .getElementById(nextField)
+                                .focus();
+
+                        }
+                        else {
+
+                            document
+                                .querySelector(".submit")
+                                .focus();
+
+                        }
+
+                    }
+
+                }
+            );
+
+        });
+
+
+
+        const form =
+            document.getElementById(
+                "registrationForm"
+            );
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+
+                event.preventDefault();
+
+
+                let valid = true;
+
+
+
+                const ssn =
+                    document.getElementById("ssn");
+
+
+                const email =
+                    document.getElementById("email");
+
+
+                const confirmEmail =
+                    document.getElementById(
+                        "confirmEmail"
+                    );
+
+
+                const userId =
+                    document.getElementById("userId");
+
+
+                const confirmUserId =
+                    document.getElementById(
+                        "confirmUserId"
+                    );
+
+
+                const lastName =
+                    document.getElementById(
+                        "lastName"
+                    );
+
+
+                const firstName =
+                    document.getElementById(
+                        "firstName"
+                    );
+
+
+                const birthDate =
+                    document.getElementById(
+                        "birthDate"
+                    );
+
+
+
+                clearErrors();
+
+
+
+                if (ssn.value.trim() === "") {
+
+                    showError(
+                        ssn,
+                        "ssnError",
+                        "CRN / SS Number is required."
+                    );
+
+                    valid = false;
+
+                }
+
+
+
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+                if (email.value.trim() === "") {
+
+                    showError(
+                        email,
+                        "emailError",
+                        "Email address is required."
+                    );
+
+                    valid = false;
+
+                }
+
+                else if (
+                    !emailPattern.test(
+                        email.value
+                    )
+                ) {
+
+                    showError(
+                        email,
+                        "emailError",
+                        "Please enter a valid email address."
+                    );
+
+                    valid = false;
+
+                }
+
+
+                if (
+                    confirmEmail.value.trim() === ""
+                ) {
+
+                    showError(
+                        confirmEmail,
+                        "confirmEmailError",
+                        "Please confirm your email."
+                    );
+
+                    valid = false;
+
+                }
+
+                else if (
+                    email.value !==
+                    confirmEmail.value
+                ) {
+
+                    showError(
+                        confirmEmail,
+                        "confirmEmailError",
+                        "Email addresses do not match."
+                    );
+
+                    valid = false;
+
+                }
+
+
+                const userIdPattern =
+                    /^[A-Za-z][A-Za-z0-9_]{7,19}$/;
+
+
+                if (
+                    userId.value.trim() === ""
+                ) {
+
+                    showError(
+                        userId,
+                        "userIdError",
+                        "Preferred User ID is required."
+                    );
+
+                    valid = false;
+
+                }
+
+                else if (
+                    !userIdPattern.test(
+                        userId.value
+                    )
+                ) {
+
+                    showError(
+                        userId,
+                        "userIdError",
+                        "User ID must be 8–20 characters, start with a letter, and use only letters, numbers, or underscores."
+                    );
+
+                    valid = false;
+
+                }
+
+
+
+                if (
+                    confirmUserId.value.trim() === ""
+                ) {
+
+                    showError(
+                        confirmUserId,
+                        "confirmUserIdError",
+                        "Please confirm your User ID."
+                    );
+
+                    valid = false;
+
+                }
+
+                else if (
+                    userId.value !==
+                    confirmUserId.value
+                ) {
+
+                    showError(
+                        confirmUserId,
+                        "confirmUserIdError",
+                        "User IDs do not match."
+                    );
+
+                    valid = false;
+
+                }
+
+
+                if (
+                    lastName.value.trim() === ""
+                ) {
+
+                    showError(
+                        lastName,
+                        "lastNameError",
+                        "Surname / Last Name is required."
+                    );
+
+                    valid = false;
+
+                }
+
+
+                if (
+                    firstName.value.trim() === ""
+                ) {
+
+                    showError(
+                        firstName,
+                        "firstNameError",
+                        "Given Name is required."
+                    );
+
+                    valid = false;
+
+                }
+
+
+
+
+                if (
+                    birthDate.value === ""
+                ) {
+
+                    showError(
+                        birthDate,
+                        "birthDateError",
+                        "Date of Birth is required."
+                    );
+
+                    valid = false;
+
+                }
+
+
+
+                if (valid) {
+
+
+                    document
+                        .getElementById(
+                            "successMessage"
+                        )
+                        .style.display = "block";
+
+
+                    alert(
+                        "Registration completed successfully!"
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        function showError(
+            input,
+            errorId,
+            message
+        ) {
+
+            input.classList.add(
+                "error-input"
+            );
+
+
+            document
+                .getElementById(errorId)
+                .textContent = message;
+
+        }
+
+
+
+        function clearErrors() {
+
+
+            const errors =
+                document.querySelectorAll(
+                    "small"
+                );
+
+
+            errors.forEach(function(error) {
+
+                error.textContent = "";
+
+            });
+
+
+            const inputs =
+                document.querySelectorAll(
+                    "input[type='text'], input[type='email'], input[type='date']"
+                );
+
+
+            inputs.forEach(function(input) {
+
+                input.classList.remove(
+                    "error-input"
+                );
+
+            });
+
+
+            document
+                .getElementById(
+                    "successMessage"
+                )
+                .style.display = "none";
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
